@@ -8,11 +8,12 @@ import javax.swing.JPanel;
 public class ParticlePanel extends JPanel 
 {
 	public ParticleGenerator pg2;
+	public static int pNumber = 1200;
 	
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		g.drawRect(0, 0, 400, 400);
+		g.drawRect(0, 0, ParticleGenerator.sSize, ParticleGenerator.sSize);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(Color.BLUE);
 		ArrayList<Particle> particleList = pg2.list;
@@ -26,13 +27,13 @@ public class ParticlePanel extends JPanel
 	{
 		ParticleGenerator pg = new ParticleGenerator();
 		
-		pg.frm.setSize(300, 600);
+		pg.frm.setSize(ParticleGenerator.sSize + 2, ParticleGenerator.sSize + 2);
 		pg.frm.add(pg.panel);
 		pg.frm.setVisible(true);
 		
 		int counter = 0;
 		int numCounter = 0;
-		while(counter < 500)
+		while(counter < pNumber)
 		{
 			int x = ParticleGenerator.RandomLocationX();
 			int y = ParticleGenerator.RandomLocationY();

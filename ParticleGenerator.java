@@ -13,7 +13,7 @@ public class ParticleGenerator implements Runnable{
 	public ArrayList<Particle> list = new ArrayList<Particle>();
 	public ArrayList<Integer> listX = new ArrayList<Integer>();
 	public ArrayList<Integer> listY = new ArrayList<Integer>();
-	public static int sSize = 401;
+	public static int sSize = 800;
 
 	ParticlePanel panel;
 	
