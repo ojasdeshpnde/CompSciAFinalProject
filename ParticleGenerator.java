@@ -13,7 +13,7 @@ public class ParticleGenerator implements Runnable{
 	public ArrayList<Particle> list = new ArrayList<Particle>();
 	public ArrayList<Integer> listX = new ArrayList<Integer>();
 	public ArrayList<Integer> listY = new ArrayList<Integer>();
-	
+	public static int sSize = 401;
 
 	ParticlePanel panel;
 	
@@ -52,10 +52,11 @@ public class ParticleGenerator implements Runnable{
 						}
 					}
 				}
-				if (!isCollided) {
+				if (!isCollided) 
+				{
 					int x = randomMovementX();
 					int y = randomMovementY();
-					if(list.get(i).myX + x >= 401)
+					if(list.get(i).myX + x >= sSize)
 					{
 						if(x > 0) 
 						{
@@ -75,7 +76,7 @@ public class ParticleGenerator implements Runnable{
 						list.get(i).myX += x;
 					}
 					
-					if(list.get(i).myY + y >= 401)
+					if(list.get(i).myY + y >= sSize)
 					{
 						if(y > 0) 
 						{
@@ -111,13 +112,13 @@ public class ParticleGenerator implements Runnable{
 	public static int RandomLocationX()
 	{
 		int x;
-		x = (int)(Math.random() * 400);//(list.get(i).myX + 2 == list.get(j).myX) || (list.get(i).myX - 2 == list.get(j).myX) || (list.get(i).myY + 2 == list.get(j).myY) || ((list.get(i).myY - 2 == list.get(j).myY))0);
+		x = (int)(Math.random() * (sSize));//(list.get(i).myX + 2 == list.get(j).myX) || (list.get(i).myX - 2 == list.get(j).myX) || (list.get(i).myY + 2 == list.get(j).myY) || ((list.get(i).myY - 2 == list.get(j).myY))0);
 		return x;
 	}
 	public static int RandomLocationY()
 	{
 		int y;
-		y = (int)(Math.random() * 400);
+		y = (int)(Math.random() * (sSize));
 		return y;
 	}
 	public static int randomMovementX()
@@ -132,10 +133,40 @@ public class ParticleGenerator implements Runnable{
 	}
 	public static boolean isInDistance(Particle one, Particle two)
 	{
-		int num = one.myX - two.myX;
+		double num = distanceF(one, two);
+		return num <= 1;
+		
+		/*int num = one.myX - two.myX;
 		int num2 = one.myY - two.myY;
 		//System.out.println(num + " " + num2);
-		return Math.abs(num) <= 1 && Math.abs(num2) <= 1;
+		return Math.abs(num) <= 1 && Math.abs(num2) <= 1;*/
+		
+	
+		//TRIAL
+		
+	/*	if(((one.myX + 1) == two.myX) || ((one.myX - 1) == two.myX))
+		{
+			System.out.println("1");
+			return true;
+		}
+		else if(((one.myY + 1) == two.myY) || ((one.myY - 1) == two.myY))
+		{
+			System.out.println("2");
+			return true;
+		}
+		System.out.println("3");
+		return false;*/
+	}
+	
+	public static double distanceF(Particle one, Particle two)
+	{
+		int cX = one.myX - two.myX;
+		int cY = one.myY - two.myY;
+		cX = cX * cX;
+		cY = cY * cY;
+		double total = cX + cY;
+		total = Math.sqrt(total);
+		return total;
 	}
 	
 }

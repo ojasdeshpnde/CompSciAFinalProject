@@ -32,7 +32,7 @@ public class ParticlePanel extends JPanel
 		
 		int counter = 0;
 		int numCounter = 0;
-		while(counter < 1000)
+		while(counter < 500)
 		{
 			int x = ParticleGenerator.RandomLocationX();
 			int y = ParticleGenerator.RandomLocationY();
